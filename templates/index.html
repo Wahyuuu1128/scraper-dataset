@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Scrapify Flow</title>
-    
+ 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -57,6 +57,7 @@
             color: var(--text-main);
             padding-bottom: 80px;
             transition: background 0.3s ease, color 0.3s ease;
+            overflow-x: hidden; /* Mencegah scroll horizontal body */
         }
 
         /* Navbar */
@@ -191,20 +192,24 @@
         .result-header {
             display: flex;
             justify-content: space-between;
-            align-items: center; /* Vertikal center */
+            align-items: center; 
             margin-bottom: 1.5rem;
-            flex-wrap: wrap; /* Biar turun kalau layar sempit */
-            gap: 1.5rem; /* JARAK AMAN ANTAR ELEMEN (Ini kuncinya!) */
+            flex-wrap: wrap;
+            gap: 1.5rem;
         }
 
         /* Table Styles */
         .table-container {
             border-radius: 16px;
-            overflow: hidden;
+            /* overflow: hidden;  <-- HAPUS INI BIAR GAK MOTONG SCROLL */
             box-shadow: var(--card-shadow);
             background: var(--glass-bg);
             backdrop-filter: blur(5px);
             border: var(--glass-border);
+            
+            /* Enable horizontal scroll kalau tabel kepanjangan */
+            overflow-x: auto; 
+            -webkit-overflow-scrolling: touch; /* Smooth scroll di iOS */
         }
 
         .table { color: var(--text-main); margin-bottom: 0; }
@@ -219,6 +224,7 @@
             color: var(--text-muted);
             border-bottom: 2px solid var(--table-border);
             background-color: var(--table-head-bg);
+            white-space: nowrap; /* Biar header gak turun ke bawah, maksa scroll */
         }
 
         .table td {
@@ -227,6 +233,7 @@
             font-size: 0.9rem;
             border-bottom: 1px solid var(--table-border);
             color: var(--text-main);
+            white-space: nowrap; /* Biar isi tabel rapi lurus ke samping */
         }
         
         .table-hover tbody tr:hover {
@@ -240,12 +247,12 @@
             border: 1px solid var(--glass-border);
         }
 
-        /* Tombol Download yang Estetik */
+        /* Tombol Download */
         .btn-download {
             background: #10b981;
             color: white;
-            border-radius: 12px; /* Lebih rounded */
-            padding: 0.7rem 1.5rem; /* Padding lebih lega */
+            border-radius: 12px;
+            padding: 0.7rem 1.5rem;
             font-size: 0.95rem;
             font-weight: 600;
             text-decoration: none;
@@ -253,13 +260,13 @@
             align-items: center;
             gap: 10px;
             transition: all 0.2s;
-            box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2); /* Shadow halus */
+            box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2);
         }
 
         .btn-download:hover {
             background: #059669;
             color: white;
-            transform: translateY(-2px); /* Efek naik dikit pas di hover */
+            transform: translateY(-2px);
             box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
         }
 
@@ -275,22 +282,45 @@
             height: auto;
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            border: 4px solid white; /* Frame putih biar clean */
+            border: 4px solid white;
         }
 
+        /* --- 🔥 MOBILE RESPONSIVE FIX 🔥 --- */
         @media (max-width: 768px) {
+            /* 1. Tambah Jarak Aman (Padding) di Container Utama */
+            .container {
+                padding-left: 24px !important; /* Jarak kiri biar gak mepet */
+                padding-right: 24px !important; /* Jarak kanan */
+            }
+
             .hero-section { padding-top: 1.5rem; }
             .brand-logo { font-size: 1.25rem; }
-            .glass-card { padding: 1.5rem; }
-            .table th, .table td { white-space: nowrap; }
             
-            /* Fix layout tombol di HP */
+            /* Card dikit dirapihin padding-nya */
+            .glass-card { 
+                padding: 1.5rem; 
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            /* 2. Tombol Download Full Width */
             .result-header {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: stretch; /* Biar tombol melar penuh ke samping */
                 gap: 1rem;
             }
-            .btn-download { width: 100%; justify-content: center; }
+            .btn-download { 
+                width: 100%; 
+                justify-content: center; 
+            }
+
+            /* 3. Tabel Scroll ke Samping */
+            /* Ini udah dihandle oleh .table-container overflow-x: auto di atas,
+               tapi kita pastiin disini display-nya block */
+            .table-container {
+                display: block;
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -299,6 +329,9 @@
     <nav class="navbar sticky-top">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="brand-logo">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
                 Scrapify Flow
             </div>
             
@@ -316,7 +349,7 @@
                     <h2 class="narrative-title">Mengubah Ulasan Menjadi Data</h2>
                     <p class="narrative-text">
                         Scrapify Flow membantu peneliti dan pengembang mengambil data ulasan publik dari Google Play Store secara efisien. 
-                        Website ini dirancang untuk mempermudah proses analisis sentimen dan pengumpulan dataset big data.
+                        Platform ini dirancang untuk mempermudah proses analisis sentimen dan pengumpulan dataset big data.
                     </p>
                 </div>
 
@@ -375,7 +408,7 @@
                         </a>
                     </div>
 
-                    <div class="table-container table-responsive">
+                    <div class="table-container">
                         <table class="table table-hover mb-0">
                             <thead>
                                 <tr>
