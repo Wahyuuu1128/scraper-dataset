@@ -32,6 +32,4 @@ Scrapify Flow dibangun menggunakan kombinasi teknologi *backend* dan *frontend* 
 * **Bootstrap 5**: Framework CSS untuk sistem *grid* dan komponen responsif.
 * **FontAwesome 6**: Untuk ikon grafis vektor pada antarmuka.
 
----
-
-## Dibuat oleh Wahyu Rahmat Ilahi
+** Dibuat oleh Wahyu Rahmat Ilahi
