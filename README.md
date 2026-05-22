@@ -33,6 +33,8 @@ Scrapify Flow dibangun menggunakan kombinasi teknologi *backend* dan *frontend* 
 * **FontAwesome 6**: Untuk ikon grafis vektor pada antarmuka.
 
 ### Struktur Folder
+
+```text
 scrapify-flow/
 │
 ├── app.py                  # File utama aplikasi (Logika Flask & Scraping)
