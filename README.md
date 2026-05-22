@@ -1,10 +1,10 @@
-# ⚡ Scrapify Flow
+# Scrapify Flow
 
 Scrapify Flow adalah aplikasi berbasis web yang dirancang untuk mengekstraksi (scraping) data ulasan publik dari Google Play Store secara efisien. Aplikasi ini tidak hanya mengambil data mentah, tetapi juga langsung memprosesnya untuk menghasilkan visualisasi data berupa Word Cloud dan menyediakan opsi unduhan dataset. Sangat cocok digunakan oleh peneliti, analis data, maupun pengembang aplikasi untuk menganalisis umpan balik (feedback) pengguna dengan cepat.
 
 ---
 
-## ✨ Fitur Utama
+## Fitur Utama
 
 Aplikasi ini dilengkapi dengan berbagai fitur fungsional dan antarmuka yang modern:
 
@@ -16,7 +16,7 @@ Aplikasi ini dilengkapi dengan berbagai fitur fungsional dan antarmuka yang mode
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+## Teknologi yang Digunakan
 
 Scrapify Flow dibangun menggunakan kombinasi teknologi *backend* dan *frontend* modern:
 
@@ -32,4 +32,13 @@ Scrapify Flow dibangun menggunakan kombinasi teknologi *backend* dan *frontend* 
 * **Bootstrap 5**: Framework CSS untuk sistem *grid* dan komponen responsif.
 * **FontAwesome 6**: Untuk ikon grafis vektor pada antarmuka.
 
-** Dibuat oleh Wahyu Rahmat Ilahi
+### Struktur Folder
+│
+├── app.py                  # File utama aplikasi (Logika Flask & Scraping)
+├── hasil_ulasan.csv        # Output file dataset ulasan (dibuat otomatis)
+├── README.md               # Dokumentasi proyek
+│
+└── templates/
+    └── index.html          # Tampilan antarmuka utama (UI HTML/CSS)
+
+* ** Dibuat oleh Wahyu Rahmat Ilahi
