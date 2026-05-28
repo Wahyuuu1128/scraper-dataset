@@ -43,5 +43,3 @@ scrapify-flow/
 │
 └── templates/
     └── index.html          # Tampilan antarmuka utama (UI HTML/CSS)
-
-### Dibuat oleh Wahyu Rahmat Ilahi
